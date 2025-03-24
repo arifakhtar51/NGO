@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="सेवा कल्याण सेवा समिति Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1 class="en">Seva Kalyan Seva Samiti</h1>
+                    <h1 class="hi">सेवा कल्याण सेवा समिति</h1>
+                </div>
+            </div>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#donate">Donate</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <button id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle">
+                    <i class="fas fa-language"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="en">Making a Difference Together</h1>
+                    <h1 class="hi">साथ मिलकर बदलाव लाएं</h1>
+                    <p class="en">Join us in our mission to create positive change in society</p>
+                    <p class="hi">समाज में सकारात्मक बदलाव लाने के लिए हमारे साथ जुड़ें</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="en">About Us</h2>
+            <h2 class="hi">हमारे बारे में</h2>
+            <div class="about-content">
+                <p class="en">We are dedicated to making a positive impact in our community through various initiatives and programs.</p>
+                <p class="hi">हम विभिन्न पहलों और कार्यक्रमों के माध्यम से अपने समुदाय में सकारात्मक प्रभाव डालने के लिए समर्पित हैं।</p>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="en">Our Projects</h2>
+            <h2 class="hi">हमारे प्रोजेक्ट्स</h2>
+            
+            <div class="carousel-container">
+                <button class="carousel-button prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <!-- Education Card -->
+                        <div class="carousel-card">
+                            <div class="card-image">
+                                <img src="education.jpeg" alt="Education">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="en">Education</h3>
+                                <h3 class="hi">शिक्षा</h3>
+                                <p class="en">Concerns around education quality is an area that warrants attention. It becomes even more relevant when viewed in light of India's human capital issues. Focused and sustained engagement is one of the most potent ways to address this crisis. ALIG, as an NGO in India, has its intervention in government schools and endeavours to equip youth with quality education & digital literacy to enter the global village.</p>
+                                <p class="hi">शिक्षा की गुणवत्ता के बारे में चिंताएं एक ऐसा क्षेत्र है जो ध्यान देने योग्य है। भारत की मानव पूंजी के मुद्दों के संदर्भ में यह और भी प्रासंगिक हो जाता है।</p>
+                                <a href="programs.html#education" class="read-more en">Read More</a>
+                                <a href="programs.html#education" class="read-more hi">और पढ़ें</a>
+                            </div>
+                        </div>
+
+                        <!-- Health Card -->
+                        <div class="carousel-card">
+                            <div class="card-image">
+                                <img src="health.jpeg" alt="Health & Emergency">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="en">Health & Emergency</h3>
+                                <h3 class="hi">स्वास्थ्य और आपातकाल</h3>
+                                <p class="en">India has more than half of its population under the age of twenty-five years, a proportion which is larger than any other country in the world. It is thus imperative to address issues pertaining to the health of this young population. ALIG as a responsible NGO in India, shoulders its responsibility by imparting training on health & emergency subjects to ensure our youth's well-being and to keep them prepared for such exigencies.</p>
+                                <p class="hi">भारत की आधी से अधिक आबादी पच्चीस वर्ष से कम आयु की है, जो दुनिया के किसी भी अन्य देश की तुलना में अधिक है।</p>
+                                <a href="programs.html#health" class="read-more en">Read More</a>
+                                <a href="programs.html#health" class="read-more hi">और पढ़ें</a>
+                            </div>
+                        </div>
+
+                        <!-- Skill Card -->
+                        <div class="carousel-card">
+                            <div class="card-image">
+                                <img src="skill.jpeg" alt="Skill Development">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="en">Skill Development</h3>
+                                <h3 class="hi">कौशल विकास</h3>
+                                <p class="en">Skill is a valuable tool to empower a person with financial independence and social equality. India, with more than 65% of its population in the working age group, needs to train this large section of the society for its development. As an NGO in India, ALIG provides occupational trainings and employment-oriented workshops & courses to help individuals develop vocational skills and contribute towards India's development.</p>
+                                <p class="hi">कौशल एक महत्वपूर्ण उपकरण है जो व्यक्ति को वित्तीय स्वतंत्रता और सामाजिक समानता के साथ सशक्त बनाता है।</p>
+                                <a href="programs.html#skill" class="read-more en">Read More</a>
+                                <a href="programs.html#skill" class="read-more hi">और पढ़ें</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-button next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-nav">
+                    <button class="carousel-indicator active" data-index="0"></button>
+                    <button class="carousel-indicator" data-index="1"></button>
+                    <button class="carousel-indicator" data-index="2"></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="donate" class="donate">
+            <h2 class="en">Donate Now</h2>
+            <h2 class="hi">अभी दान करें</h2>
+            <div class="donation-container">
+                <div class="qr-code">
+                    <img src="https://via.placeholder.com/200x200" alt="Paytm QR Code">
+                    <p class="en">Scan to donate via Paytm</p>
+                    <p class="hi">Paytm के माध्यम से दान करने के लिए स्कैन करें</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="en">Contact Us</h2>
+            <h2 class="hi">संपर्क करें</h2>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Name" class="en" placeholder-hi="नाम">
+                    <input type="email" placeholder="Email" class="en" placeholder-hi="ईमेल">
+                    <textarea placeholder="Message" class="en" placeholder-hi="संदेश"></textarea>
+                    <button type="submit" class="en">Send Message</button>
+                    <button type="submit" class="hi">संदेश भेजें</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="en">Get in Touch</h3>
+                <h3 class="hi">संपर्क में रहें</h3>
+                <p class="en">Email: contact@ngoname.org</p>
+                <p class="en">Phone: +91 1234567890</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="en">Follow Us</h3>
+                <h3 class="hi">हमें फॉलो करें</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="en">&copy; 2024 NGO Name. All rights reserved.</p>
+            <p class="hi">&copy; 2024 एनजीओ नाम। सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

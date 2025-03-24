@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Seva Kalyan Seva Samiti</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <!-- Navbar (same as index.html) -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="सेवा कल्याण सेवा समिति Logo" class="logo-img">
+            <div class="logo-text">
+                <h1 class="en">Seva Kalyan Seva Samiti</h1>
+                <h1 class="hi">सेवा कल्याण सेवा समिति</h1>
+            </div>
+        </div>
+        <button class="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="programs.html">Programs</a>
+            <a href="donate.html" class="active">Donate</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="nav-controls">
+            <button id="darkModeToggle"><i class="fas fa-moon"></i></button>
+            <button id="languageToggle">हिंदी</button>
+        </div>
+    </nav>
+
+    <main class="donation-page">
+        <section class="donation-hero">
+            <h1 class="en">Support Our Cause</h1>
+            <h1 class="hi">हमारे कार्य में सहयोग करें</h1>
+            <p class="en">Your contribution helps us create positive change</p>
+            <p class="hi">आपका योगदान सकारात्मक बदलाव लाने में मदद करता है</p>
+        </section>
+
+        <section class="donation-options">
+            <div class="donation-container">
+                <div class="donation-amounts">
+                    <h2 class="en">Select Amount</h2>
+                    <h2 class="hi">राशि चुनें</h2>
+                    <div class="amount-buttons">
+                        <button data-amount="500">₹500</button>
+                        <button data-amount="1000">₹1,000</button>
+                        <button data-amount="2000">₹2,000</button>
+                        <button data-amount="5000">₹5,000</button>
+                        <div class="custom-amount">
+                            <input type="number" id="customAmount" placeholder="Enter amount" min="100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-methods">
+                    <h2 class="en">Payment Method</h2>
+                    <h2 class="hi">भुगतान का तरीका</h2>
+                    <div class="payment-buttons">
+                        <button id="upiButton" class="payment-method-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span class="en">UPI</span>
+                            <span class="hi">यूपीआई</span>
+                        </button>
+                        <button id="netBankingButton" class="payment-method-btn">
+                            <i class="fas fa-university"></i>
+                            <span class="en">Net Banking</span>
+                            <span class="hi">नेट बैंकिंग</span>
+                        </button>
+                        <button id="cardButton" class="payment-method-btn">
+                            <i class="fas fa-credit-card"></i>
+                            <span class="en">Card</span>
+                            <span class="hi">कार्ड</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="donateButton" class="donate-btn">
+                    <span class="en">Donate Now</span>
+                    <span class="hi">अभी दान करें</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="donation-info">
+            <div class="info-container">
+                <div class="info-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3 class="en">100% Secure</h3>
+                    <h3 class="hi">100% सुरक्षित</h3>
+                    <p class="en">All donations are processed through secure payment gateways</p>
+                    <p class="hi">सभी दान सुरक्षित भुगतान गेटवे के माध्यम से प्रोसेस किए जाते हैं</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-receipt"></i>
+                    <h3 class="en">Tax Benefits</h3>
+                    <h3 class="hi">कर लाभ</h3>
+                    <p class="en">Donations are eligible for tax deduction under 80G</p>
+                    <p class="hi">दान 80G के तहत कर कटौती के लिए पात्र हैं</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="footer-content">
+            <!-- Footer content here -->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Seva Kalyan Seva Samiti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Razorpay Integration
+        const donateButton = document.getElementById('donateButton');
+        const amountButtons = document.querySelectorAll('.amount-buttons button');
+        const customAmountInput = document.getElementById('customAmount');
+        let selectedAmount = 0;
+
+        // Handle amount selection
+        amountButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                selectedAmount = parseInt(button.dataset.amount);
+                updateButtonStates();
+            });
+        });
+
+        customAmountInput.addEventListener('input', () => {
+            selectedAmount = parseInt(customAmountInput.value) || 0;
+            updateButtonStates();
+        });
+
+        function updateButtonStates() {
+            amountButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.amount == selectedAmount) {
+                    button.classList.add('active');
+                }
+            });
+            donateButton.disabled = selectedAmount < 100;
+        }
+
+        // Initialize Razorpay payment
+        donateButton.addEventListener('click', () => {
+            if (selectedAmount < 100) {
+                alert('Please select or enter an amount greater than ₹100');
+                return;
+            }
+
+            const options = {
+                key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+                amount: selectedAmount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'Seva Kalyan Seva Samiti',
+                description: 'Donation',
+                image: 'logo.jpg',
+                handler: function(response) {
+                    // Handle successful payment
+                    alert('Payment Successful! Payment ID: ' + response.razorpay_payment_id);
+                },
+                prefill: {
+                    name: '',
+                    email: '',
+                    contact: ''
+                },
+                theme: {
+                    color: '#FF6F00'
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+    </script>
+</body>
+</html> 
