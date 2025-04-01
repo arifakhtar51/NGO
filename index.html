@@ -29,6 +29,7 @@
                 <a href="#projects">Projects</a>
                 <a href="#donate">Donate</a>
                 <a href="#contact">Contact</a>
+                <a href="admin-login.html" class="admin-link">Admin</a>
             </div>
             <div class="nav-controls">
                 <button id="darkModeToggle">
@@ -133,12 +134,20 @@
             </div>
         </section>
 
+        <section id="events" class="events">
+            <h2 class="en">Upcoming Events</h2>
+            <h2 class="hi">आगामी कार्यक्रम</h2>
+            <div class="events-grid" id="mainEventsGrid">
+                <!-- Events will be dynamically added here -->
+            </div>
+        </section>
+
         <section id="donate" class="donate">
             <h2 class="en">Donate Now</h2>
             <h2 class="hi">अभी दान करें</h2>
             <div class="donation-container">
                 <div class="qr-code">
-                    <img src="https://via.placeholder.com/200x200" alt="Paytm QR Code">
+                    <img src="QRCODE.jpg" alt="Paytm QR Code">
                     <p class="en">Scan to donate via Paytm</p>
                     <p class="hi">Paytm के माध्यम से दान करने के लिए स्कैन करें</p>
                 </div>
@@ -150,9 +159,17 @@
             <h2 class="hi">संपर्क करें</h2>
             <div class="contact-form">
                 <form>
-                    <input type="text" placeholder="Name" class="en" placeholder-hi="नाम">
-                    <input type="email" placeholder="Email" class="en" placeholder-hi="ईमेल">
-                    <textarea placeholder="Message" class="en" placeholder-hi="संदेश"></textarea>
+                    <input type="text" 
+                           placeholder="Name" 
+                           data-placeholder-en="Name" 
+                           data-placeholder-hi="नाम">
+                    <input type="email" 
+                           placeholder="Email" 
+                           data-placeholder-en="Email" 
+                           data-placeholder-hi="ईमेल">
+                    <textarea placeholder="Message" 
+                              data-placeholder-en="Message" 
+                              data-placeholder-hi="संदेश"></textarea>
                     <button type="submit" class="en">Send Message</button>
                     <button type="submit" class="hi">संदेश भेजें</button>
                 </form>

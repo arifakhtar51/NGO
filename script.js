@@ -54,7 +54,7 @@ function updateLanguageIcon(language) {
 function updateFormPlaceholders(language) {
     const inputs = document.querySelectorAll('input, textarea');
     inputs.forEach(input => {
-        const placeholder = input.getAttribute(`placeholder-${language}`);
+        const placeholder = input.getAttribute(`data-placeholder-${language}`);
         if (placeholder) {
             input.placeholder = placeholder;
         }
@@ -116,24 +116,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
-        if (targetIndex === 0) {
-            prevButton.classList.add('is-hidden');
-            nextButton.classList.remove('is-hidden');
-        } else if (targetIndex === slides.length - 1) {
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.add('is-hidden');
-        } else {
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.remove('is-hidden');
-        }
+        // Always show both arrows for circular navigation
+        prevButton.classList.remove('is-hidden');
+        nextButton.classList.remove('is-hidden');
     };
 
     // Click events for next and previous buttons
     nextButton.addEventListener('click', e => {
         const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling;
+        const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
         const currentDot = dotsNav.querySelector('.active');
-        const nextDot = currentDot.nextElementSibling;
+        const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
         const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
         moveToSlide(track, currentSlide, nextSlide);
@@ -143,9 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevButton.addEventListener('click', e => {
         const currentSlide = track.querySelector('.current-slide');
-        const prevSlide = currentSlide.previousElementSibling;
+        const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1]; // If first slide, go to last
         const currentDot = dotsNav.querySelector('.active');
-        const prevDot = currentDot.previousElementSibling;
+        const prevDot = currentDot.previousElementSibling || dots[dots.length - 1]; // If first dot, go to last
         const prevIndex = slides.findIndex(slide => slide === prevSlide);
 
         moveToSlide(track, currentSlide, prevSlide);
@@ -171,9 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-advance carousel
     let carouselInterval = setInterval(() => {
         const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling || slides[0];
+        const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
         const currentDot = dotsNav.querySelector('.active');
-        const nextDot = currentDot.nextElementSibling || dots[0];
+        const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
         const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
         moveToSlide(track, currentSlide, nextSlide);
@@ -189,9 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
     track.addEventListener('mouseleave', () => {
         carouselInterval = setInterval(() => {
             const currentSlide = track.querySelector('.current-slide');
-            const nextSlide = currentSlide.nextElementSibling || slides[0];
+            const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
             const currentDot = dotsNav.querySelector('.active');
-            const nextDot = currentDot.nextElementSibling || dots[0];
+            const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
             const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
             moveToSlide(track, currentSlide, nextSlide);
@@ -233,4 +226,48 @@ navLinks.querySelectorAll('a').forEach(link => {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
     });
+});
+
+// Load and display events on the main page
+function loadMainPageEvents() {
+    const events = JSON.parse(localStorage.getItem('events')) || [];
+    const eventsGrid = document.getElementById('mainEventsGrid');
+    
+    if (!eventsGrid) return; // Only proceed if we're on the main page
+    
+    eventsGrid.innerHTML = '';
+    
+    if (events.length === 0) {
+        eventsGrid.innerHTML = `
+            <div class="no-events">
+                <p class="en">No upcoming events at the moment. Please check back later!</p>
+                <p class="hi">अभी कोई आगामी कार्यक्रम नहीं है। कृपया बाद में पुनः जांच करें!</p>
+            </div>
+        `;
+        return;
+    }
+
+    events.forEach(event => {
+        const eventCard = createMainEventCard(event);
+        eventsGrid.appendChild(eventCard);
+    });
+}
+
+function createMainEventCard(event) {
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    card.innerHTML = `
+        <img src="${event.image}" alt="${event.title}" class="event-image">
+        <div class="event-content">
+            <h3 class="event-title">${event.title}</h3>
+            <p class="event-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+            <p class="event-description">${event.description}</p>
+        </div>
+    `;
+    return card;
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadMainPageEvents();
 }); 
