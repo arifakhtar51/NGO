@@ -1375,4 +1375,45 @@ footer {
     color: #666;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+[data-theme="dark"] {
+    --primary-color: #1affff;
+    --secondary-color: #00cccc;
+    --text-color: #ffffff;
+    --bg-color: #001a1a;
+    --card-bg: #003333;
+    --nav-bg: #003333;
+    --nav-text: #ffffff;
+    --footer-bg: #001a1a;
+}
+
+[data-theme="dark"] .program-section:nth-child(even) {
+    background-color: #1a1b26;
+}
+
+[data-theme="dark"] .program-card {
+    background: linear-gradient(145deg, #24283b, #1a1b26);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .program-card h3 {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .program-card p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .program-section h2 {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .programs-intro p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .program-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-color: var(--primary-color);
 } 
