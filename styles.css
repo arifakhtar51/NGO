@@ -113,6 +113,12 @@ section h2::after {
     object-fit: cover;
     box-shadow: 0 2px 10px rgba(26, 255, 255, 0.2);
     border: 2px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(26, 255, 255, 0.3);
 }
 
 .logo-text {
@@ -224,6 +230,93 @@ section {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+}
+
+/* Volunteer Section */
+.volunteer {
+    background-color: var(--bg-color);
+    padding: 5rem 5%;
+}
+
+.volunteer-content {
+    display: flex;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.president-photo {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 100px;
+}
+
+.president-img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--primary-color);
+}
+
+.president-message {
+    flex: 1;
+}
+
+.president-message h3 {
+    color: var(--heading-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.message-hi, .message-en {
+    margin-bottom: 2rem;
+}
+
+.message-hi p, .message-en p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.message-hi p:last-child, .message-en p:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+    text-align: right;
+}
+
+[data-language="hi"] .message-en {
+    display: none;
+}
+
+[data-language="en"] .message-hi {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .volunteer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .president-photo {
+        flex: 0 0 auto;
+        position: static;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .president-message h3 {
+        font-size: 1.8rem;
+    }
+
+    .message-hi p, .message-en p {
+        font-size: 0.95rem;
+    }
 }
 
 /* Projects Section */
@@ -415,6 +508,12 @@ body {
     object-fit: cover;
     box-shadow: 0 2px 10px rgba(26, 255, 255, 0.2);
     border: 2px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(26, 255, 255, 0.3);
 }
 
 .logo-text {
@@ -759,28 +858,32 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
+    overflow: hidden;
 }
 
 .carousel-track-container {
-    overflow: hidden;
     position: relative;
     border-radius: 15px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    height: 100%;
+    width: 100%;
 }
 
 .carousel-card {
     flex: 0 0 100%;
+    width: 100%;
     display: flex;
     background: var(--card-bg);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
+    margin: 0;
 }
 
 [data-theme="dark"] .carousel-card {
@@ -792,6 +895,7 @@ footer {
     flex: 0 0 40%;
     position: relative;
     overflow: hidden;
+    width: 40%;
 }
 
 .card-image img {
@@ -809,6 +913,7 @@ footer {
 
 .card-content {
     flex: 0 0 60%;
+    width: 60%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -899,30 +1004,114 @@ footer {
 
 /* Responsive adjustments for carousel */
 @media (max-width: 992px) {
+    .carousel-container {
+        padding: 0 20px;
+    }
+
     .carousel-card {
         flex-direction: column;
     }
 
     .card-image {
         flex: 0 0 200px;
+        width: 100%;
     }
 
     .card-content {
         flex: 1;
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .carousel-button {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 768px) {
     .carousel-container {
-        padding: 0 20px;
+        padding: 0 15px;
+    }
+
+    .card-image {
+        flex: 0 0 180px;
     }
 
     .card-content {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .card-content h3 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
+    }
+
+    .card-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .read-more {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+
+    .carousel-nav {
+        margin-top: 1.5rem;
+    }
+
+    .carousel-indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        padding: 0 10px;
+    }
+
+    .card-image {
+        flex: 0 0 160px;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .card-content p {
+        font-size: 0.85rem;
+    }
+
+    .read-more {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .carousel-button {
+        width: 25px;
+        height: 25px;
+        font-size: 0.7rem;
     }
 }
 
@@ -1548,4 +1737,62 @@ footer {
 
 [data-theme="dark"] .close-button {
     color: var(--text-color);
+}
+
+/* Hero Logo */
+.hero-logo {
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero-logo-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(26, 255, 255, 0.3);
+    border: 3px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-logo-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(26, 255, 255, 0.4);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Dark mode adjustments for logos */
+[data-theme="dark"] .logo-img,
+[data-theme="dark"] .hero-logo-img {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(26, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .logo-img:hover,
+[data-theme="dark"] .hero-logo-img:hover {
+    box-shadow: 0 4px 20px rgba(26, 255, 255, 0.4);
+}
+
+/* Responsive adjustments for logos */
+@media (max-width: 768px) {
+    .hero-logo-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
 } 

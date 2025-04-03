@@ -96,83 +96,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsNav = document.querySelector('.carousel-nav');
     const dots = Array.from(dotsNav.children);
 
-    const slideWidth = slides[0].getBoundingClientRect().width;
+    let currentIndex = 0;
 
-    // Arrange the slides next to one another
-    const setSlidePosition = (slide, index) => {
-        slide.style.left = slideWidth * index + 'px';
-    };
-    slides.forEach(setSlidePosition);
-
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
+    const moveToSlide = (index) => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
     };
 
-    const updateDots = (currentDot, targetDot) => {
-        currentDot.classList.remove('active');
-        targetDot.classList.add('active');
+    const nextSlide = () => {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        moveToSlide(nextIndex);
     };
 
-    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
-        // Always show both arrows for circular navigation
-        prevButton.classList.remove('is-hidden');
-        nextButton.classList.remove('is-hidden');
+    const prevSlide = () => {
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        moveToSlide(prevIndex);
     };
 
     // Click events for next and previous buttons
-    nextButton.addEventListener('click', e => {
-        const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
-        const currentDot = dotsNav.querySelector('.active');
-        const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
-        const nextIndex = slides.findIndex(slide => slide === nextSlide);
-
-        moveToSlide(track, currentSlide, nextSlide);
-        updateDots(currentDot, nextDot);
-        hideShowArrows(slides, prevButton, nextButton, nextIndex);
-    });
-
-    prevButton.addEventListener('click', e => {
-        const currentSlide = track.querySelector('.current-slide');
-        const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1]; // If first slide, go to last
-        const currentDot = dotsNav.querySelector('.active');
-        const prevDot = currentDot.previousElementSibling || dots[dots.length - 1]; // If first dot, go to last
-        const prevIndex = slides.findIndex(slide => slide === prevSlide);
-
-        moveToSlide(track, currentSlide, prevSlide);
-        updateDots(currentDot, prevDot);
-        hideShowArrows(slides, prevButton, nextButton, prevIndex);
-    });
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
 
     // Click events for the nav indicators
     dotsNav.addEventListener('click', e => {
         const targetDot = e.target.closest('button');
         if (!targetDot) return;
 
-        const currentSlide = track.querySelector('.current-slide');
-        const currentDot = dotsNav.querySelector('.active');
         const targetIndex = dots.findIndex(dot => dot === targetDot);
-        const targetSlide = slides[targetIndex];
-
-        moveToSlide(track, currentSlide, targetSlide);
-        updateDots(currentDot, targetDot);
-        hideShowArrows(slides, prevButton, nextButton, targetIndex);
+        if (targetIndex !== -1) {
+            moveToSlide(targetIndex);
+        }
     });
 
     // Auto-advance carousel
-    let carouselInterval = setInterval(() => {
-        const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
-        const currentDot = dotsNav.querySelector('.active');
-        const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
-        const nextIndex = slides.findIndex(slide => slide === nextSlide);
-
-        moveToSlide(track, currentSlide, nextSlide);
-        updateDots(currentDot, nextDot);
-        hideShowArrows(slides, prevButton, nextButton, nextIndex);
-    }, 5000);
+    let carouselInterval = setInterval(nextSlide, 5000);
 
     // Pause auto-advance on hover
     track.addEventListener('mouseenter', () => {
@@ -180,21 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     track.addEventListener('mouseleave', () => {
-        carouselInterval = setInterval(() => {
-            const currentSlide = track.querySelector('.current-slide');
-            const nextSlide = currentSlide.nextElementSibling || slides[0]; // If last slide, go to first
-            const currentDot = dotsNav.querySelector('.active');
-            const nextDot = currentDot.nextElementSibling || dots[0]; // If last dot, go to first
-            const nextIndex = slides.findIndex(slide => slide === nextSlide);
-
-            moveToSlide(track, currentSlide, nextSlide);
-            updateDots(currentDot, nextDot);
-            hideShowArrows(slides, prevButton, nextButton, nextIndex);
-        }, 5000);
+        carouselInterval = setInterval(nextSlide, 5000);
     });
 
     // Initialize first slide
-    slides[0].classList.add('current-slide');
+    moveToSlide(0);
 });
 
 // Hamburger Menu
