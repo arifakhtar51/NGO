@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Donors - Seva Kalyan Seva Samiti</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="सेवा कल्याण सेवा समिति Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1 class="en">Seva Kalyan Seva Samiti</h1>
+                    <h1 class="hi">सेवा कल्याण सेवा समिति</h1>
+                </div>
+            </div>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#donate">Donate</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="admin-login.html" class="admin-link">Admin</a>
+            </div>
+            <div class="nav-controls">
+                <button id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle">
+                    <i class="fas fa-language"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="donors-page">
+            <div class="donors-container">
+                <h2 class="en">Top Donors</h2>
+                <h2 class="hi">शीर्ष दानदाता</h2>
+                
+                <div class="donors-controls">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search by name..." class="en" data-placeholder-en="Search by name..." data-placeholder-hi="नाम से खोजें...">
+                    </div>
+                    <div class="sort-options">
+                        <button class="sort-btn active" data-sort="amount">Sort by Amount</button>
+                        <button class="sort-btn" data-sort="name">Sort by Name</button>
+                    </div>
+                </div>
+
+                <div class="donors-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="en">Donor Name</th>
+                                <th class="hi">दानदाता का नाम</th>
+                                <th class="en">Amount (₹)</th>
+                                <th class="hi">राशि (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AMANDEEP SINGH</td>
+                                <td>अमनदीप सिंह</td>
+                                <td>25,000</td>
+                            </tr>
+                            <tr>
+                                <td>NEETA TRIPATHI</td>
+                                <td>नीता त्रिपाठी</td>
+                                <td>20,000</td>
+                            </tr>
+                            <tr>
+                                <td>SIDDARTHA SINGH GAUTAM</td>
+                                <td>सिद्धार्थ सिंह गौतम</td>
+                                <td>15,000</td>
+                            </tr>
+                            <tr>
+                                <td>RAHUL SHARMA</td>
+                                <td>राहुल शर्मा</td>
+                                <td>11,000</td>
+                            </tr>
+                            <tr>
+                                <td>AYUSH SINGH</td>
+                                <td>आयुष सिंह</td>
+                                <td>10,000</td>
+                            </tr>
+                            <tr>
+                                <td>SARATH SINGH GAUTAM</td>
+                                <td>सरथ सिंह गौतम</td>
+                                <td>5,000</td>
+                            </tr>
+                            <tr>
+                                <td>VIMLESH KUMAR GAUTAM</td>
+                                <td>विमलेश कुमार गौतम</td>
+                                <td>3,500</td>
+                            </tr>
+                            <tr>
+                                <td>AMAN KUMAR</td>
+                                <td>अमन कुमार</td>
+                                <td>3,500</td>
+                            </tr>
+                            <tr>
+                                <td>JITENDRA KUMAR RAO</td>
+                                <td>जितेंद्र कुमार राव</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td>ASHOK KUMAR GUPTA</td>
+                                <td>अशोक कुमार गुप्ता</td>
+                                <td>2,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="en">Get in Touch</h3>
+                <h3 class="hi">संपर्क में रहें</h3>
+                <p class="en">Email: Shivjankalyansewasamiti@gmail.com</p>
+                <p class="en">Phone: 7309242243 / 7705093426 / 9453992996 / 9889889399</p>
+                <p class="hi">Email: Shivjankalyansewasamiti@gmail.com</p>
+                <p class="hi">Phone: 7309242243 / 7705093426 / 9453992996 / 9889889399</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="en">Follow Us</h3>
+                <h3 class="hi">हमें फॉलो करें</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/16QbXZ2cA4/"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="en">&copy; 2024 Seva Kalyan Seva Samiti. All rights reserved.</p>
+            <p class="hi">&copy; 2024 एनजीओ सेवा कल्याण सेवा समिति। सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

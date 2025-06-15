@@ -25,40 +25,33 @@ function updateDarkModeIcon(theme) {
 
 // Language Toggle
 const languageToggle = document.getElementById('languageToggle');
-const html = document.documentElement;
 
 // Check for saved language preference
 const savedLanguage = localStorage.getItem('language');
 if (savedLanguage) {
-    html.setAttribute('data-language', savedLanguage);
+    body.classList.add(savedLanguage);
     updateLanguageIcon(savedLanguage);
 }
 
 languageToggle.addEventListener('click', () => {
-    const currentLanguage = html.getAttribute('data-language');
-    const newLanguage = currentLanguage === 'hi' ? 'en' : 'hi';
+    body.classList.toggle('hindi');
     
-    html.setAttribute('data-language', newLanguage);
-    localStorage.setItem('language', newLanguage);
-    updateLanguageIcon(newLanguage);
+    // Update placeholders
+    document.querySelectorAll('input[data-placeholder-en], textarea[data-placeholder-en]').forEach(element => {
+        if (body.classList.contains('hindi')) {
+            element.placeholder = element.dataset.placeholderHi;
+        } else {
+            element.placeholder = element.dataset.placeholderEn;
+        }
+    });
     
-    // Update form placeholders
-    updateFormPlaceholders(newLanguage);
+    // Force a reflow to ensure transitions work properly
+    void body.offsetWidth;
 });
 
 function updateLanguageIcon(language) {
     const icon = languageToggle.querySelector('i');
     icon.className = language === 'hi' ? 'fas fa-globe-asia' : 'fas fa-language';
-}
-
-function updateFormPlaceholders(language) {
-    const inputs = document.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        const placeholder = input.getAttribute(`data-placeholder-${language}`);
-        if (placeholder) {
-            input.placeholder = placeholder;
-        }
-    });
 }
 
 // Smooth scrolling for navigation links
@@ -222,4 +215,92 @@ function createMainEventCard(event) {
 // Call the function when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     loadMainPageEvents();
-}); 
+});
+
+// Past Events Carousel
+const pastEventsCarousel = document.querySelector('.events-carousel');
+if (pastEventsCarousel) {
+    const track = pastEventsCarousel.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = pastEventsCarousel.querySelector('.carousel-button.next');
+    const prevButton = pastEventsCarousel.querySelector('.carousel-button.prev');
+    const dotsNav = pastEventsCarousel.querySelector('.carousel-nav');
+    const dots = Array.from(dotsNav.children);
+
+    // Set initial position
+    slides[0].classList.add('current-slide');
+    slides[1]?.classList.add('next-slide');
+    slides[slides.length - 1]?.classList.add('prev-slide');
+
+    // Function to update slide classes
+    const updateSlideClasses = (currentIndex) => {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('current-slide', 'next-slide', 'prev-slide');
+        });
+
+        slides[currentIndex].classList.add('current-slide');
+        
+        const nextIndex = (currentIndex + 1) % slides.length;
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        
+        slides[nextIndex].classList.add('next-slide');
+        slides[prevIndex].classList.add('prev-slide');
+    };
+
+    // Function to move slides
+    const moveToSlide = (targetIndex) => {
+        updateSlideClasses(targetIndex);
+        
+        // Update dots
+        const currentDot = dotsNav.querySelector('.active');
+        currentDot.classList.remove('active');
+        dots[targetIndex].classList.add('active');
+    };
+
+    // When I click next button, move slides to the right
+    nextButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const currentIndex = slides.indexOf(currentSlide);
+        const nextIndex = (currentIndex + 1) % slides.length;
+        moveToSlide(nextIndex);
+    });
+
+    // When I click prev button, move slides to the left
+    prevButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const currentIndex = slides.indexOf(currentSlide);
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        moveToSlide(prevIndex);
+    });
+
+    // When I click the nav indicators, move to that slide
+    dotsNav.addEventListener('click', e => {
+        const targetDot = e.target.closest('button');
+        if (!targetDot) return;
+
+        const targetIndex = parseInt(targetDot.dataset.index);
+        moveToSlide(targetIndex);
+    });
+
+    // Auto advance slides
+    let autoAdvanceInterval = setInterval(() => {
+        const currentSlide = track.querySelector('.current-slide');
+        const currentIndex = slides.indexOf(currentSlide);
+        const nextIndex = (currentIndex + 1) % slides.length;
+        moveToSlide(nextIndex);
+    }, 5000);
+
+    // Pause auto advance on hover
+    pastEventsCarousel.addEventListener('mouseenter', () => {
+        clearInterval(autoAdvanceInterval);
+    });
+
+    pastEventsCarousel.addEventListener('mouseleave', () => {
+        autoAdvanceInterval = setInterval(() => {
+            const currentSlide = track.querySelector('.current-slide');
+            const currentIndex = slides.indexOf(currentSlide);
+            const nextIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(nextIndex);
+        }, 5000);
+    });
+} 

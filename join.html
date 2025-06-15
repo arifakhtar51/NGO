@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Seva Kalyan Seva Samiti</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="सेवा कल्याण सेवा समिति Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1 class="en">Seva Kalyan Seva Samiti</h1>
+                    <h1 class="hi">सेवा कल्याण सेवा समिति</h1>
+                </div>
+            </div>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#donate">Donate</a>
+                <a href="volunteers.html">Volunteers</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="admin-login.html" class="admin-link">Admin</a>
+            </div>
+            <div class="nav-controls">
+                <button id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle">
+                    <i class="fas fa-language"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="join-page">
+            <div class="join-container">
+                <h2 class="en">Join Our Team</h2>
+                <h2 class="hi">हमारी टीम में शामिल हों</h2>
+                
+                <div class="join-content">
+                    <div class="join-info">
+                        <h3 class="en">Why Join Us?</h3>
+                        <h3 class="hi">हमसे क्यों जुड़ें?</h3>
+                        <ul class="en">
+                            <li>Make a real difference in your community</li>
+                            <li>Gain valuable experience and skills</li>
+                            <li>Meet like-minded people</li>
+                            <li>Be part of meaningful projects</li>
+                            <li>Flexible time commitment</li>
+                        </ul>
+                        <ul class="hi">
+                            <li>अपने समुदाय में वास्तविक बदलाव लाएं</li>
+                            <li>मूल्यवान अनुभव और कौशल प्राप्त करें</li>
+                            <li>समान विचारधारा वाले लोगों से मिलें</li>
+                            <li>सार्थक परियोजनाओं का हिस्सा बनें</li>
+                            <li>लचीला समय प्रतिबद्धता</li>
+                        </ul>
+                    </div>
+
+                    <form id="volunteerForm" class="volunteer-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required placeholder="Name" data-placeholder-en="Name" data-placeholder-hi="नाम">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" required placeholder="Phone" data-placeholder-en="Phone" data-placeholder-hi="फोन">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required placeholder="Email" data-placeholder-en="Email" data-placeholder-hi="ईमेल">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="address" required placeholder="Address" data-placeholder-en="Address" data-placeholder-hi="पता"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="designation" required placeholder="Designation" data-placeholder-en="Designation" data-placeholder-hi="पदनाम">
+                        </div>
+                        <div class="form-group">
+                            <label for="photo" class="en">Upload Photo</label>
+                            <label for="photo" class="hi">फोटो अपलोड करें</label>
+                            <input type="file" id="photo" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="en">Submit Application</button>
+                        <button type="submit" class="hi">आवेदन जमा करें</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="en">Get in Touch</h3>
+                <h3 class="hi">संपर्क में रहें</h3>
+                <p class="en">Email: Shivjankalyansewasamiti@gmail.com</p>
+                <p class="en">Phone: 7309242243 / 7705093426 / 9453992996 / 9889889399</p>
+                <p class="hi">Email: Shivjankalyansewasamiti@gmail.com</p>
+                <p class="hi">Phone: 7309242243 / 7705093426 / 9453992996 / 9889889399</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="en">Follow Us</h3>
+                <h3 class="hi">हमें फॉलो करें</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/16QbXZ2cA4/"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="en">&copy; 2024 Seva Kalyan Seva Samiti. All rights reserved.</p>
+            <p class="hi">&copy; 2024 एनजीओ सेवा कल्याण सेवा समिति। सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
